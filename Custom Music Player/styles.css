@@ -1,0 +1,134 @@
+:root {
+	/* random values */
+
+	--container-padding: 14px;
+	--resizer-width: 2px;
+
+	/* colors */
+
+	--background-color: hsl(0, 0%, 25%);
+	--primary-color: hsl(0, 0%, 15%);
+
+	/* js values */
+
+	--sidebar-width: 200px;
+}
+
+/* all main selectors */
+
+*, *::before, *::after {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	background-color: var(--background-color);
+}
+
+/* scrollbars */
+
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #888;
+	border-radius: 100vw;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
+}
+
+#main-container {
+	height: 100vh;
+	padding: var(--container-padding);
+
+	/* grid */
+
+	display: grid;
+
+	grid-template-columns: clamp(300px, var(--sidebar-width), 50%) 1fr;
+	grid-template-rows: 100px 1fr 100px;
+
+	grid-template-areas: 
+	"sidebar header header"
+	"sidebar content content"
+	"footer footer footer";
+
+	gap: var(--container-padding);
+}
+
+/* layout sections */
+
+.layout-section {
+	background-color: var(--primary-color);
+	border-radius: var(--container-padding);
+
+	position: relative;
+}
+
+/* header */
+
+#header {
+	grid-area: header;
+}
+
+/* sidebar */
+
+#sidebar {
+	grid-area: sidebar;
+}
+
+/* content */
+
+#content {
+	grid-area: content;
+}
+
+/* footer */
+
+#footer {
+	grid-area: footer;
+}
+
+/* resizers */
+
+.resizer {
+	cursor: col-resize;
+	background-color: transparent;
+
+	width: var(--container-padding);
+	height: 100%;
+	border: none;
+
+	background-image: linear-gradient(white, white);
+	background-size: var(--resizer-width) 5%;
+	background-repeat: no-repeat;
+	background-position: center;
+
+	transition: background-size 250ms;
+	transition-delay: 0ms;
+
+	position: absolute;
+	top: 0;
+}
+
+.resizer:hover {
+	background-size: var(--resizer-width) 25%;
+	transition-delay: 100ms;
+}
+
+.resizer:active {
+	background-size: var(--resizer-width) 75%;
+	transition-delay: 0ms;
+}
+
+#sidebar-resizer {
+	right: calc(var(--container-padding) * -1);
+}
