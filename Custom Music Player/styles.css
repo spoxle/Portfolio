@@ -98,6 +98,7 @@ body {
 
 #sidebar-header {
 	height: 100px;
+	padding: var(--container-padding);
 }
 
 #sidebar-content {
@@ -142,11 +143,11 @@ body {
 	background-position: center;
 
 	transition: background-size 250ms cubic-bezier(0, 0, 0, 1.5);
-	transition-delay: 100ms;
 }
 
 .resizer:hover {
 	background-size: var(--resizer-width) 25%;
+	transition-delay: 100ms;
 }
 
 .resizer:active {

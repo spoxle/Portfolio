@@ -10,9 +10,11 @@ const sidebarHeader = document.getElementById("sidebar-header");
 const sidebar = document.getElementById("sidebar");
 
 function setSidebarWidth(n) {
-	root.style.setProperty("--sidebar-width", n + "px");
-
 	const sidebarWidth = sidebar.clientWidth;
+
+	if (n <= 150) {
+		n = 75;
+	}
 
 	if (sidebarWidth <= 75) {
 		sidebarHeader.style.display = "none";
@@ -20,7 +22,9 @@ function setSidebarWidth(n) {
 		sidebarHeader.style.display = "block";
 	}
 
-	root.style.setProperty("--playlists-columns", Math.ceil(sidebarWidth / 200))
+	root.style.setProperty("--sidebar-width", n + "px");
+
+	root.style.setProperty("--playlists-columns", Math.ceil(sidebarWidth / 250))
 };
 
 // sidebar resizing
