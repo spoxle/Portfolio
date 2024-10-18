@@ -16,9 +16,10 @@
 
 	--sidebar-width: 200px;
 	--playlists-columns: 1;
+	--playlist-padding: var(--container-padding);
 }
 
-/* all main selectors */
+/* all selector */
 
 * {
 	font-family: Poppins;
@@ -30,8 +31,29 @@
 	color: white;
 }
 
+/* body */
+
 body {
 	background-color: var(--background-color);
+}
+
+/* buttons */
+
+button {
+	background-color: transparent;
+	aspect-ratio: 1;
+	border: none;
+
+	svg {
+		vertical-align: middle;
+	}
+}
+
+/* svg */
+
+svg {
+	fill: white;
+	vertical-align: middle;
 }
 
 /* scrollbars */
@@ -61,7 +83,7 @@ body {
 
 	display: grid;
 
-	grid-template-columns: clamp(75px, var(--sidebar-width), 50%) 1fr;
+	grid-template-columns: clamp(100px, var(--sidebar-width), 50%) 1fr;
 	grid-template-rows: 100px 1fr 100px;
 
 	grid-template-areas: 
@@ -97,7 +119,8 @@ body {
 }
 
 #sidebar-header {
-	height: 100px;
+	max-height: 100px;
+	min-height: 100px;
 	padding: var(--container-padding);
 }
 
@@ -105,7 +128,7 @@ body {
 	overflow-x: hidden;
 	overflow-y: auto;
 
-	flex-grow: 1;
+	/* flex-grow: 1; */
 }
 
 #sidebar-footer {
@@ -158,21 +181,33 @@ body {
 	right: calc(var(--container-padding) * -1);
 }
 
-/* song library */
+/* playlists container */
 
 #playlists {
 	display: grid;
 	grid-template-columns: repeat(var(--playlists-columns), 1fr);
-	grid-auto-rows: min-content;
 
 	gap: var(--container-padding);
 	padding: var(--container-padding);
 }
 
+#playlists-footer {
+	height: 100px;
+	width: 100%;
+	position: sticky;
+	bottom: 0;
+
+	/* background-color: pink; */
+
+	backdrop-filter: blur(20px);
+}
+
+/* playlists */
+
 .playlist {
 	background-color: var(--secondary-color);
 	border-radius: var(--container-padding);
-	padding: var(--container-padding);
+	padding: var(--playlist-padding);
 	height: fit-content;
 
 	img {
@@ -181,18 +216,29 @@ body {
 		object-fit: cover;
 		border-radius: calc(var(--container-padding) / 2);
 	}
-
-	transition: 200ms;
 }
 
 .playlist:hover {
 	filter: brightness(0.75);
 }
 
+/* name classes */
+
+.playlist-name {
+	font-size: 0.9rem;
+}
+
 .song-name {
 	font-size: 0.8rem;
 }
 
-.artist-name {
+.creator-name {
 	font-size: 0.7rem;
+	color: hsl(0, 0%, 65%);
+}
+
+/* js class */
+
+.disabled {
+	display: none;
 }
