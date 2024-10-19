@@ -59,3 +59,41 @@ sidebarResizer.addEventListener("mousedown", () => {
 document.addEventListener("mouseup", () => {
 	resizing = false;
 });
+
+////////////
+// VOLUME //
+////////////
+
+const volumeButton = document.getElementById("volume-button");
+const volumeSlider = document.getElementById("volume-slider");
+const volumeValue = document.getElementById("volume-value");
+
+let lastVolume = volumeSlider.value;
+let muted = lastVolume === 0;
+
+function updateVolume() {
+	const volume = volumeSlider.value;
+
+	volumeValue.innerHTML = volume + "%";
+	muted = volume === 0;
+
+	console.log(volume);
+}
+
+volumeSlider.addEventListener("input", function() {
+	updateVolume();
+
+	lastVolume = volumeSlider.value;
+})
+
+volumeButton.onclick = function() {
+	muted = !muted;
+
+	if (muted) {
+		volumeSlider.value = 0;
+	} else {
+		volumeSlider.value = lastVolume;
+	}
+
+	updateVolume()
+}

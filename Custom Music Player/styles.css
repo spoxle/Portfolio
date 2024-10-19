@@ -12,6 +12,9 @@
 	--primary-color: hsl(0, 0%, 15%);
 	--secondary-color: hsl(0, 0%, 10%);
 
+	--accent-color: hsl(25, 100%, 65%);
+	--dark-accent-color: hsl(25, 100%, 40%);
+
 	/* js values */
 
 	--sidebar-width: 200px;
@@ -41,19 +44,13 @@ body {
 
 button {
 	background-color: transparent;
-	aspect-ratio: 1;
 	border: none;
 
 	svg {
 		vertical-align: middle;
 	}
-}
 
-/* svg */
-
-svg {
-	fill: white;
-	vertical-align: middle;
+	transition: 250ms;
 }
 
 /* scrollbars */
@@ -119,16 +116,15 @@ svg {
 }
 
 #sidebar-header {
-	max-height: 100px;
-	min-height: 100px;
+	height: 100px;
 	padding: var(--container-padding);
+
+	flex-shrink: 0;
 }
 
 #sidebar-content {
 	overflow-x: hidden;
 	overflow-y: auto;
-
-	/* flex-grow: 1; */
 }
 
 #sidebar-footer {
@@ -145,6 +141,82 @@ svg {
 
 #footer {
 	grid-area: footer;
+
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+
+	button {
+		border-radius: 50%;
+		padding: 10px;
+	}
+
+	button:hover {
+		background-color: white;
+		
+		svg {
+			fill: black;
+		}
+	}
+
+	button:active {
+		scale: 0.9;
+		transition: 50ms;
+	}
+}
+
+#footer-left {
+	margin-right: auto;
+	padding: var(--container-padding);
+	width: 100%;
+}
+
+#footer-middle {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+}
+
+#footer-right {
+	margin-left: auto;
+	padding: var(--container-padding);
+	width: 100%;
+
+	display: flex;
+	justify-content: right;
+	align-items: center;
+	gap: 10px;
+}
+
+/* volume */
+
+#volume-slider {
+	appearance: none;
+
+	flex-grow: 1;
+	background: var(--secondary-color);
+	border-radius: 100vw;
+	padding: 3px;
+	border: 3px solid white;
+
+	transition: 250ms;
+}
+
+#volume-slider::-webkit-slider-thumb {
+	appearance: none;
+
+	background: var(--accent-color);
+	border-radius: 50%;
+	width: 15px;
+	height: 15px;
+}
+
+#volume-slider:hover {
+	background: black;
+}
+
+#volume-value {
+	width: 4ch;
 }
 
 /* resizers */
@@ -191,17 +263,6 @@ svg {
 	padding: var(--container-padding);
 }
 
-#playlists-footer {
-	height: 100px;
-	width: 100%;
-	position: sticky;
-	bottom: 0;
-
-	/* background-color: pink; */
-
-	backdrop-filter: blur(20px);
-}
-
 /* playlists */
 
 .playlist {
@@ -216,10 +277,6 @@ svg {
 		object-fit: cover;
 		border-radius: calc(var(--container-padding) / 2);
 	}
-}
-
-.playlist:hover {
-	filter: brightness(0.75);
 }
 
 /* name classes */
